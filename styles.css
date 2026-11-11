@@ -1,0 +1,164 @@
+:root {
+  --fons: #f6f1e8;
+  --superficie: #ffffff;
+  --text: #17130e;
+  --text-suau: #57504a;
+  --linia: #d9d0c3;
+  --dia1: #b0411f;      /* divendres: maó */
+  --dia2: #1d5f73;      /* diumenge: blau pissarra */
+  --accent: var(--dia1);
+  --sobre-accent: #ffffff;
+  --ok: #2f7a3e;
+  --radi: 14px;
+  --tactil: 52px;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fons: #16130f;
+    --superficie: #221e19;
+    --text: #f4efe7;
+    --text-suau: #b9b0a5;
+    --linia: #3a342d;
+    --dia1: #ff8a5c;
+    --dia2: #6cc3dc;
+    --sobre-accent: #16130f;
+    --ok: #7fd18f;
+  }
+}
+
+body[data-dia="2"] { --accent: var(--dia2); }
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--fons);
+  color: var(--text);
+  font: 19px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+.vista {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 16px 16px 40px;
+}
+
+button, a { font: inherit; color: inherit; -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* Capçalera */
+.capcalera h1 { font-size: 2.2rem; line-height: 1.1; margin: 12px 0 2px; letter-spacing: -0.02em; }
+.subtitol { margin: 0 0 20px; color: var(--text-suau); }
+
+/* Pestanyes */
+.pestanyes {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+  background: var(--superficie); border: 1px solid var(--linia);
+  border-radius: var(--radi); padding: 5px; margin-bottom: 16px;
+  position: sticky; top: calc(env(safe-area-inset-top) + 6px); z-index: 2;
+}
+.pestanyes button {
+  min-height: 48px; border: 0; border-radius: 10px; background: transparent;
+  font-weight: 600; color: var(--text-suau);
+}
+.pestanyes button[aria-selected="true"] { background: var(--accent); color: var(--sobre-accent); }
+
+/* Llista */
+.llista { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.fila {
+  display: grid; grid-template-columns: 44px 1fr auto; gap: 12px; align-items: center;
+  background: var(--superficie); border: 1px solid var(--linia); border-radius: var(--radi);
+  padding: 12px 14px; min-height: 64px; width: 100%; text-align: left;
+}
+.fila-num {
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+  border: 2px solid var(--accent); color: var(--accent); font-weight: 700; font-size: 1rem;
+}
+.fila.escoltada .fila-num { background: var(--accent); color: var(--sobre-accent); }
+.fila-nom { display: block; font-weight: 600; line-height: 1.3; }
+.fila-meta { display: block; color: var(--text-suau); font-size: 0.9rem; margin-top: 2px; }
+.fila-marca { font-size: 0.85rem; color: var(--ok); font-weight: 600; white-space: nowrap; }
+.fila-obrir { display: contents; }
+.fila-nota .fila-num { border-style: dashed; }
+
+.opcions { display: flex; gap: 6px; margin-top: 10px; }
+.opcions button {
+  flex: 1; min-height: 48px; border-radius: 10px; border: 2px solid var(--accent);
+  background: transparent; color: var(--accent); font-weight: 600; font-size: 0.95rem;
+}
+.opcions button[aria-pressed="true"] { background: var(--accent); color: var(--sobre-accent); }
+
+/* Descàrrega */
+.descarrega { margin-top: 28px; }
+.btn-secundari {
+  width: 100%; min-height: var(--tactil); border-radius: var(--radi);
+  border: 2px solid var(--accent); background: var(--superficie); color: var(--text);
+  font-weight: 600; padding: 10px 14px;
+}
+.progres { margin-top: 12px; }
+.progres-barra { height: 10px; background: var(--linia); border-radius: 5px; overflow: hidden; }
+#progres-ple { height: 100%; width: 0; background: var(--accent); transition: width .2s; }
+.progres-text { color: var(--text-suau); font-size: 0.9rem; margin: 6px 0 0; }
+
+/* Fitxa */
+.btn-tornar {
+  border: 0; background: none; color: var(--accent); font-weight: 600;
+  min-height: 48px; padding: 0 4px 0 0; margin-left: -2px;
+}
+.fitxa-num { margin: 8px 0 0; color: var(--accent); font-weight: 700; }
+.fitxa-cap h1 { font-size: 1.9rem; line-height: 1.15; margin: 2px 0 8px; letter-spacing: -0.01em; }
+.fitxa-on { margin: 0; color: var(--text-suau); }
+
+.reproductor {
+  margin: 20px 0 14px; padding: 20px 16px; background: var(--superficie);
+  border: 1px solid var(--linia); border-radius: 20px; text-align: center;
+}
+.btn-play {
+  width: 104px; height: 104px; border-radius: 50%; border: 0;
+  background: var(--accent); color: var(--sobre-accent);
+  display: inline-grid; place-items: center;
+}
+.btn-play svg { width: 54px; height: 54px; fill: currentColor; }
+.btn-play:active { transform: scale(0.97); }
+
+input[type="range"] {
+  width: 100%; margin: 22px 0 6px; accent-color: var(--accent); height: 32px;
+}
+.temps { display: flex; justify-content: space-between; color: var(--text-suau); font-variant-numeric: tabular-nums; font-size: 0.95rem; }
+.salts { display: flex; gap: 10px; margin-top: 12px; }
+.btn-salt {
+  flex: 1; min-height: var(--tactil); border-radius: var(--radi);
+  border: 1px solid var(--linia); background: var(--fons); font-weight: 600;
+}
+.seguent-avis {
+  margin: 16px 0 0; padding: 12px; border-radius: var(--radi);
+  background: var(--fons); border: 2px solid var(--accent); font-weight: 600;
+}
+
+.btn-mapa {
+  display: flex; align-items: center; justify-content: center; min-height: var(--tactil);
+  border-radius: var(--radi); background: var(--text); color: var(--fons);
+  text-decoration: none; font-weight: 700;
+}
+
+.practic {
+  margin-top: 14px; padding: 14px 16px; border-radius: var(--radi);
+  background: var(--superficie); border: 1px solid var(--linia);
+}
+.practic p { margin: 0 0 6px; }
+.practic p:last-child { margin: 0; }
+.practic strong { display: block; font-size: 0.85rem; color: var(--text-suau); text-transform: uppercase; letter-spacing: .04em; }
+
+.guio { margin-top: 24px; }
+.guio p { margin: 0 0 1em; }
+
+.nav-parades { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 24px; }
+.nav-parades button:disabled { opacity: .35; }
+
+[hidden] { display: none !important; }

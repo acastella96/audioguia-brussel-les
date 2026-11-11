@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Brussel·les · Audioguia</title>
+  <meta name="description" content="Audioguia en català per a dos dies a Brussel·les.">
+  <meta name="theme-color" content="#f6f1e8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#16130f" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Brussel·les">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Llista de parades -->
+  <main id="vista-llista" class="vista">
+    <header class="capcalera">
+      <h1>Brussel·les</h1>
+      <p class="subtitol">Audioguia · 13 i 15 de novembre</p>
+    </header>
+
+    <nav class="pestanyes" role="tablist" aria-label="Dia">
+      <button role="tab" id="tab-1" data-dia="1" aria-selected="true">Divendres</button>
+      <button role="tab" id="tab-2" data-dia="2" aria-selected="false">Diumenge</button>
+    </nav>
+
+    <ol id="llista" class="llista" aria-live="polite"></ol>
+
+    <section class="descarrega">
+      <button id="btn-descarrega" class="btn-secundari">Descarrega-ho tot per anar sense cobertura</button>
+      <div id="progres-descarrega" class="progres" hidden>
+        <div class="progres-barra"><div id="progres-ple"></div></div>
+        <p id="progres-text" class="progres-text"></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Fitxa de parada -->
+  <main id="vista-fitxa" class="vista" hidden>
+    <header class="fitxa-cap">
+      <button id="btn-tornar" class="btn-tornar" aria-label="Torna a la llista">‹ Parades</button>
+      <p id="fitxa-num" class="fitxa-num"></p>
+      <h1 id="fitxa-nom"></h1>
+      <p id="fitxa-on" class="fitxa-on"></p>
+      <div id="fitxa-opcions" class="opcions" hidden></div>
+    </header>
+
+    <section class="reproductor" aria-label="Reproductor">
+      <button id="btn-play" class="btn-play" aria-label="Reprodueix">
+        <svg id="ico-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <svg id="ico-pausa" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+      </button>
+      <input id="barra-temps" type="range" min="0" max="100" step="1" value="0" aria-label="Posició de l'àudio">
+      <div class="temps"><span id="temps-actual">0:00</span><span id="temps-total">0:00</span></div>
+      <div class="salts">
+        <button id="btn-enrere" class="btn-salt" aria-label="Enrere 15 segons">−15 s</button>
+        <button id="btn-endavant" class="btn-salt" aria-label="Endavant 15 segons">+15 s</button>
+      </div>
+      <p id="seguent-avis" class="seguent-avis" hidden></p>
+    </section>
+
+    <a id="btn-mapa" class="btn-mapa" href="#" target="_blank" rel="noopener">Com hi arribo</a>
+
+    <section id="fitxa-practic" class="practic" hidden>
+      <p id="fitxa-adreca"></p>
+      <p id="fitxa-demanar"></p>
+    </section>
+
+    <article id="fitxa-text" class="guio"></article>
+
+    <nav class="nav-parades">
+      <button id="btn-anterior" class="btn-secundari">‹ Anterior</button>
+      <button id="btn-seguent" class="btn-secundari">Següent parada ›</button>
+    </nav>
+  </main>
+
+  <audio id="audio" preload="metadata"></audio>
+  <script src="app.js"></script>
+</body>
+</html>
